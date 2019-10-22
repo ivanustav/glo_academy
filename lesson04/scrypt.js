@@ -11,7 +11,7 @@ budgetDay = money / 30;
 do {
     money = prompt('Ваш месячный доход?', 50000); 
 } while(isNaN(money) || money === '' || money === null);
-money = +money;
+money = +prompt('Ваш месячный доход?', '');
 addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', '');
 deposit = confirm('Есть ли у вас депозит в банке?', '');
 
