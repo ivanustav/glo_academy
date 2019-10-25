@@ -1,91 +1,35 @@
-'usestrict';
+let arr = [];
 
-let money = 32000,
-    income = 'Фриланс',
-    addExpenses = 'Бензин, еда, спорт',
-    deposit = true,
-    mission = 1000000,
-    period = 7,
-budgetDay = money / 30;
+function randomInteger(min, max) {
+    let rand = min + Math.random() * (max + 1 - min);
+    return Math.floor(rand);
+}
 
-do {
-    money = prompt('Ваш месячный доход?', 50000); 
-} while(isNaN(money) || money === '' || money === null);
-money = +money;
-addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', '');
-deposit = confirm('Есть ли у вас депозит в банке?', '');
-
-let showTypeOf = function(data) {
-    console.log(data, typeof(data));
-};
-
-showTypeOf(money);
-showTypeOf(income);
-showTypeOf(deposit);
-
-let expensesObl1,
-    expensesSum1,
-    expensesObl2,
-expensesSum2;
-
-expensesObl2 = prompt('Какие обязательные ежемесячные расходы у вас есть?', '');
-do {
-    expensesSum1 = prompt('Во сколько это обойдется?', 2500); 
-} while(isNaN(expensesSum1) || expensesSum1 === '' || expensesSum1 === null);
-expensesSum1 = +expensesSum1;
-
-expensesObl1 = prompt('Какие обязательные ежемесячные расходы у вас есть?', '');
-do {
-    expensesSum2 = prompt('Во сколько это обойдется?', 2500); 
-} while(isNaN(expensesSum2) || expensesSum2 === '' || expensesSum2 === null);
-expensesSum2 = +expensesSum2;
-
-let budgetMounth = money - expensesSum1 - expensesSum2;
-
-let achievementGoal = mission / budgetMounth;
-
-budgetDay = budgetMounth / 30;
-
-
-
-let getStatusIncome = function() {
-    if (budgetDay >= 800) {
-        return ('Высокий уровень дохода');
-    } else if (budgetDay > 300 && budgetDay < 800) {
-        return ('Средний уровень дохода');
-    } else if (budgetDay >= 0 && budgetDay <= 300) {
-        return ('Низкий уровень дохода');   
-    } else {
-        return ('Что-то пошло не так');
+function addArr (elem) {
+    for (let i = 0; i < elem; i++) {
+        let rand = randomInteger(1, 1000);
+        console.log(rand);
+        arr[i] = rand;
     }
-};
-
-console.log(getStatusIncome());
-
-// 1. пункт обязательного задания
-
-
-// сумма расходов
-function getExpensesMonth(expensesOne, expensesTwo) {
-    return expensesOne + expensesTwo;
+    return arr;
 }
-console.log(getExpensesMonth(expensesSum1, expensesSum2));
 
-// Накопления за месяц
-function getAccumulatedMonth(inc, consum) {
-    let accumulatedMonth = inc - consum;
-    return accumulatedMonth;
+console.log(addArr(7));
+
+function searchElem() {
+    return arr.forEach(em => {
+        if (String(em).search(/(2|4)/) === 0) 
+        console.log('Нашел вот эти числа:' + em);
+    });
 }
-console.log(getAccumulatedMonth(money, getExpensesMonth(expensesSum1, expensesSum2)));
 
-//  Достижение цели
-let getTargetMonth = function() {
-    return Math.round(mission / getAccumulatedMonth(money, getExpensesMonth(expensesSum1, expensesSum2)));
-};
-console.log(getTargetMonth());
+console.log(searchElem());
 
+function isPrime(n) {
+    for (let i = 2; i * i <= n; i == 2 ? i++ : i += 2) if (n % i == 0) return false;
+    return n > 1;
+}
+  
+const res = [...Array(100)].reduce((a, _, i) => a.concat(isPrime(i) ? `Делители числа ${i}: 1 и ${i}` : []) , []).join('\n');
 
-//  2 пункт обязательного задания
-
-console.log(getAccumulatedMonth(money, getExpensesMonth(expensesSum1, expensesSum2)));
-console.log(getTargetMonth());
+console.log(res);
