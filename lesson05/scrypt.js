@@ -1,54 +1,78 @@
 'usestrict';
 
-let money = 32000,
+let money,
     income = 'Фриланс',
-    addExpenses = 'Бензин, еда, спорт',
-    deposit = true,
+    addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', ''),
+    deposit = confirm('Есть ли у вас депозит в банке?', ''),
     mission = 1000000,
-    period = 7,
-budgetDay = money / 30;
+    period = 7;
 
-do {
-    money = prompt('Ваш месячный доход?', 50000); 
-} while(isNaN(money) || money === '' || money === null);
-money = +money;
-addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', '');
-deposit = confirm('Есть ли у вас депозит в банке?', '');
+let start = function() {
+    do {
+        money = prompt('Ваш месячный доход?', 50000);
+    } while(isNaN(money) || money === '' || money === null);
+    
+};
+
+start();
 
 let showTypeOf = function(data) {
     console.log(data, typeof(data));
 };
-
 showTypeOf(money);
 showTypeOf(income);
 showTypeOf(deposit);
 
-let expensesObl1,
-    expensesSum1,
-    expensesObl2,
-expensesSum2;
+let expenses1,
+    expenses2;
+    
+function getExpensesMonth() {
+    let sum = 0,
+        counter;
+    
+    for (let i = 0; i < 2; i++) {
+        if (i === 0) {
+            expenses1 = prompt('Введите обязательную статью расходов', 'Квартплата');
+        }
+        if (i === 1) {
+            expenses2 = prompt('Введите обязательную статью расходов', 'Бензин');
+        }
+        do {
+            counter = prompt('Во сколько это обойдется?', 2500); 
+        } while(isNaN(counter) || counter === '' || counter === null);
+              
+        sum += +counter;
+              
+    }
+        
+    return sum;
+}
+    
+let expensesAmount = getExpensesMonth();
+console.log(expensesAmount);
 
-expensesObl2 = prompt('Какие обязательные ежемесячные расходы у вас есть?', '');
-do {
-    expensesSum1 = prompt('Во сколько это обойдется?', 2500); 
-} while(isNaN(expensesSum1) || expensesSum1 === '' || expensesSum1 === null);
-expensesSum1 = +expensesSum1;
+let budgetDay = getAccumulatedMonth(money, expensesAmount) / 30;
 
-expensesObl1 = prompt('Какие обязательные ежемесячные расходы у вас есть?', '');
-do {
-    expensesSum2 = prompt('Во сколько это обойдется?', 2500); 
-} while(isNaN(expensesSum2) || expensesSum2 === '' || expensesSum2 === null);
-expensesSum2 = +expensesSum2;
+// Накопления за месяц
+function getAccumulatedMonth(inc, consum) {
+    let accumulatedMonth = inc - consum;
+    return accumulatedMonth;
+}
 
-let budgetMounth = money - expensesSum1 - expensesSum2;
-
-let achievementGoal = mission / budgetMounth;
-
-budgetDay = budgetMounth / 30;
-
-
+//  Достижение цели
+let getTargetMonth = function() {
+    let result = Math.round(mission / getAccumulatedMonth(money, expensesAmount));
+    if (result > 0) {
+        console.log('Цель будет достигнута');
+    } else {
+        console.log('Цель не будет достигнута');
+    }
+    
+    return result;
+};
 
 let getStatusIncome = function() {
+    
     if (budgetDay >= 800) {
         return ('Высокий уровень дохода');
     } else if (budgetDay > 300 && budgetDay < 800) {
@@ -62,30 +86,5 @@ let getStatusIncome = function() {
 
 console.log(getStatusIncome());
 
-// 1. пункт обязательного задания
-
-
-// сумма расходов
-function getExpensesMonth(expensesOne, expensesTwo) {
-    return expensesOne + expensesTwo;
-}
-console.log(getExpensesMonth(expensesSum1, expensesSum2));
-
-// Накопления за месяц
-function getAccumulatedMonth(inc, consum) {
-    let accumulatedMonth = inc - consum;
-    return accumulatedMonth;
-}
-console.log(getAccumulatedMonth(money, getExpensesMonth(expensesSum1, expensesSum2)));
-
-//  Достижение цели
-let getTargetMonth = function() {
-    return Math.round(mission / getAccumulatedMonth(money, getExpensesMonth(expensesSum1, expensesSum2)));
-};
-console.log(getTargetMonth());
-
-
-//  2 пункт обязательного задания
-
-console.log(getAccumulatedMonth(money, getExpensesMonth(expensesSum1, expensesSum2)));
+console.log(getAccumulatedMonth(money, expensesAmount));
 console.log(getTargetMonth());
