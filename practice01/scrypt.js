@@ -132,7 +132,7 @@ let appData = {
 
 function LetterCapitalize(arr) { 
     let str = arr.join(', ');
-    return str.split(" ").map(item=>item.substring(0,1).toUpperCase()+item.substring(1)).join(", ");
+    return str.split(" ").map(item=>item.substring(0,1).toUpperCase()+item.substring(1)).join(" ");
   }
 
 appData.asking(); 
@@ -144,7 +144,7 @@ appData.getInfoDeposit();
 console.log('Расходы за месяц:' + appData.expensesMonth);
 console.log(appData.getTargetMonth());
 console.log(appData.getStatusIncome());
-console.log(LetterCapitalize(appData.addExpenses));
+console.log('Возможные расходы:' + LetterCapitalize(appData.addExpenses));
 
 
 
