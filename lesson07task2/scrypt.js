@@ -1,0 +1,13 @@
+let submit = document.getElementById('start'),
+    plusInc = document.querySelector('.btn_plus .income_add'),
+    plusExp = document.querySelector('.btn_plus .expenses_add'),
+    checkBox = document.querySelector('#deposit-check'),
+    incomeItem = document.querySelectorAll('.additional_income-item'),
+    incomeAmount = document.querySelector('.income-amount'),
+    salary = document.querySelector('.salary-amount'),
+    incomeTitle = document.querySelector('.income-title'),
+    addIncomeTitle = document.querySelector('.additional_income-item'),
+    expensesTitle = document.querySelector('.expenses-title'),
+    expensesAmount = document.querySelector('.expenses-amount'),
+    addExpensesAmount = document.querySelector('.additional_expenses-item'),
+    targetAmount = document.querySelector('.target-amount');
