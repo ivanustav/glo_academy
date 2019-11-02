@@ -24,3 +24,24 @@ advertising.remove('adv');
 
 
 target[4].textContent ='"Книга 3. this и Прототипы Объектов"';
+
+
+
+ul[2].appendChild(chapter8);  
+chapter8.textContent = 'Глава 8: За пределами ES6'; 
+ 
+
+console.log(ul[0]);
+console.log(ul[1]);
+console.log(ul[2]);
+console.log(ul[3]);
+console.log(ul[4]);
+console.log(ul[5]);
+console.log(li);
+ul[5].insertBefore(li[55], li[48]);
+ul[5].insertBefore(li[48], li[52]);
+ul[0].insertBefore(li[6], li[4]);
+ul[0].insertBefore(li[8], li[4]);
+ul[0].insertBefore(li[2], li[10]);
+ul[5].insertBefore(li[51], li[54]);
+ul[2].insertBefore(li[26], li[chapter8]);
