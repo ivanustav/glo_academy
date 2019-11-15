@@ -245,7 +245,7 @@ AppData.prototype.getIncomeMonth = function() {
 };
 AppData.prototype.getBudget = function() {
     this.budgetMonth = this.budget + this.incomeMonth - this.expensesMonth;
-    this.budgetDay = Math.floor(this.budgetMonth / 30)
+    this.budgetDay = Math.floor(this.budgetMonth / 30);
 };
 AppData.prototype.getTargetMonth = function() {
     return targetAmount.value / this.budgetMonth;
